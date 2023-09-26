@@ -5,19 +5,23 @@ import estados.Estado;
 public class Mascota {
 	private String nombre;
 	private Tipos tipo;
-	private float energia, felicidad, hambre, suciedad;
+	private int energia, felicidad, hambre, suciedad;
 	
 	public Mascota(String nombre, Tipos tipo) {
 		this.nombre = nombre;
 		this.tipo = tipo;
-		final float valorDefault = 50f;
+		final int valorDefault = 50;
 		energia = valorDefault;
 		felicidad = valorDefault;
 		hambre = valorDefault;
 		suciedad = valorDefault;
 	}
 	
-	public void dormir() {}
+	public void dormir() {
+		felicidad = corregirValor(felicidad + 20);
+		suciedad = corregirValor(suciedad + 10);
+		hambre = corregirValor(hambre + 20);
+	}
 	
 	public void estadisticas() {
 		System.out.println("Estadisticas de " + nombre);
@@ -38,9 +42,9 @@ public class Mascota {
 		}
 	}
 	
-	public float corregirValor(float v) {
-		if (v < 0) return 0f;
-		if (v > 100) return 100f;
+	public int corregirValor(int v) {
+		if (v < 0) return 0;
+		if (v > 100) return 100;
 		return v;
 	}
 }
